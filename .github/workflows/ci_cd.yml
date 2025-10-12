@@ -1,0 +1,86 @@
+name: Rails Analytics CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# CI (Testing) Job
+
+jobs: 
+  test:
+    name: Continuous Integration (Test)
+    runs-on: ubuntu-latest
+
+    # Set up a PostgreSQL service container for tests
+    services: 
+      postgres:
+        image: postgres:15-alpine
+        env: 
+          POSTGRES_USER: runner
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: rails_test
+        ports: 
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps: 
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up ruby
+      uses:  ruby/setup-ruby@v1
+      with: 
+        ruby-version: ${{ steps.bundle-cache.outputs.ruby-version }}
+        bundler-cache: true
+    
+    - name: Install Node.js (asset compilation)
+      uses: actions/setup-node@v4
+      with: 
+        node-version: '20'
+    
+    - name: Prepare Test Environment (DB setup)
+      env: 
+        RAILS_ENV: test
+        PGHOST: 127.0.0.1
+        PGUSER: runner
+        PGPASSWORD: password 
+      run: |
+        # Wait for PostgreSQL to start
+        sleep 5 
+        # Create and migrate the test database
+        bundle exec rails db:create
+        bundle exec rails db:migrate
+        # Optional: Seed the database if necessary
+        # bundle exec rails db:seed
+    
+    - name: Run tests (RSpec or Minitest)
+      env: 
+        RAILS_ENV: test
+        PGHOST: 127.0.0.1
+        PGUSER: runner
+        PGPASSWORD: password
+      run:  
+        bundle exec rspec
+
+# CD (Deployment) job
+
+  deploy: 
+    name: Continuous Deployment (Production)
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Placeholder: Build Docker Image and Deploy'
+        run: |
+          echo "✅ CI passed. Ready to deploy!"
+          echo "---"
+          echo "FUTURE STEP: Add steps here to build your production Docker image"
+          echo "and push it to a registry (e.g., Docker Hub or GHCR)."
+          echo "Then, use a tool like Kamal, Capistrano, or a cloud provider's action to deploy the image."
+          # Example: docker build -f Dockerfile.prod -t myapp:latest .
+          # Example: docker push my-registry/myapp:latest
