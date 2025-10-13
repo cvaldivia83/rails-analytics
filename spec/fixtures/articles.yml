@@ -1,0 +1,8 @@
+# Fake data to be used when testing articles
+joy:
+  title: An Article About Joy
+  subtitle: The secrets and intrincacies of life
+  year: 1995
+  body: lorem ipsum regalarus enfactoriando lux lumina
+  author_id: 1
+
