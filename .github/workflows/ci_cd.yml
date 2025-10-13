@@ -146,7 +146,7 @@ jobs:
         with: 
           ruby-version: '3.3.5'
           bundler-cache: false
-      - run: bundle exec config path vendor/bundle
+      - run: bundle config set path vendor/bundle
 
       - name: Precompile assets (importmap)
         env: 
