@@ -28,6 +28,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
+      - name: Install Bundler
+        run: gem install bundler
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -52,6 +55,9 @@ jobs:
         with: 
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+
+      - name: Install Bundler
+        run: gem install bundler
       
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -94,6 +100,9 @@ jobs:
       with: 
         path: vendor/bundle
         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+
+    - name: Install Bundler
+      run: gem install bundler
 
     - name: Set up ruby
       uses:  ruby/setup-ruby@v1
