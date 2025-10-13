@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_11_211557) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_13_183106) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -25,6 +25,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_11_211557) do
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_logs", force: :cascade do |t|
+    t.string "query"
+    t.string "user_ip"
+    t.string "session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_summaries", force: :cascade do |t|
+    t.string "user_ip"
+    t.string "session_id"
+    t.string "search_term"
+    t.integer "count"
+    t.datetime "last_searched_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
