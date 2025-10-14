@@ -1,0 +1,7 @@
+<div class="articles">
+  <div class="list">
+   <%  @articles.each do |item| %>
+    <%= render "articles/article", locals: { article: item } %>
+  `<% end %>
+  </div>
+</div>
