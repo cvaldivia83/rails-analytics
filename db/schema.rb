@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_13_183106) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_23_182717) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -32,19 +32,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_13_183106) do
   create_table "search_logs", force: :cascade do |t|
     t.string "query"
     t.string "user_ip"
-    t.string "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "search_summaries", force: :cascade do |t|
     t.string "user_ip"
-    t.string "session_id"
     t.string "search_term"
     t.integer "count"
     t.datetime "last_searched_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_ip", "search_term"], name: "index_search_summaries_on_user_ip_and_search_term", unique: true
   end
 
   add_foreign_key "articles", "authors"
