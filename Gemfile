@@ -33,7 +33,7 @@ gem "bootsnap", require: false
 
 # Tailwind CSS
 gem "tailwindcss-ruby", "~> 4.1"
-gem "tailwindcss-rails", "~> 4.3"
+gem "tailwindcss-rails", "~> 4.4"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
