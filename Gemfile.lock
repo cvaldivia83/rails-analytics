@@ -76,7 +76,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     base64 (0.3.0)
-    benchmark (0.4.1)
+    benchmark (0.5.0)
     bigdecimal (3.3.1)
     bindex (0.8.1)
     bootsnap (1.18.6)
@@ -285,8 +285,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    shoulda-matchers (6.5.0)
-      activesupport (>= 5.2.0)
+    shoulda-matchers (7.0.1)
+      activesupport (>= 7.1)
     spring (4.4.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -330,7 +330,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.0.4)
+    uri (1.1.0)
     useragent (0.16.11)
     web-console (4.2.1)
       actionview (>= 6.0.0)
@@ -371,7 +371,7 @@ DEPENDENCIES
   rubocop (~> 1.81)
   rubocop-rails-omakase
   selenium-webdriver
-  shoulda-matchers (~> 6.0)
+  shoulda-matchers (~> 7.0)
   spring-commands-rspec
   sprockets-rails
   sqlite3 (>= 1.4)
